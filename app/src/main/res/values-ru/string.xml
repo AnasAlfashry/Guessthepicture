@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Слова наследия</string>
+    <string name="share_the_question_with_friends">Спроси друга</string>
+    <string name="share_question_text">доля</string>
+    <string name="share_title_hint">Добавить заголовок сообщения</string>
+    <string name="the_right_answer_is">Ответ</string>
+    <string name="back_text">Назад</string>
+    <string name="permission_title">Разъяснение</string>
+    <string name="permission_explanation">Приложению необходимо получить разрешение на запись во внешнем хранилище, чтобы сохранить изображение для подготовки к его совместному использованию другими приложениями.</string>
+    <string name="permission_denied">Операция не была выполнена, поскольку не были предоставлены необходимые разрешения</string>
+    <string name="Change_lang_text" translatable="false">изменить язык</string>
+
+
+    <string-array name="answers">
+        <item>العقال</item>
+        <item>الفروة</item>
+        <item>السدو</item>
+        <item>الحناء</item>
+        <item>الدلة</item>
+        <item>الخف</item>
+        <item>الخنجر</item>
+        <item>النمرقة</item>
+        <item>القنديل / السراج</item>
+        <item>الفانوس</item>
+        <item>الطربوش</item>
+        <item>العمامة</item>
+        <item>الدشداشة</item>
+    </string-array>
+
+    <string-array name="answer_description">
+        <item>Его кладут поверх шляпы / гутры, чтобы исправить</item>
+        <item> На шерстяной подкладке его носят зимой, чтобы защитить от холода.</item>
+        <item> Один из традиционных бедуинских видов ткачества. </item>
+        <item>Его используют для окрашивания волос и бороды, а также для украшения рук у женщин.</item>
+        <item>Чаша, используемая арабами для подачи кофе</item>
+        <item>Сделанный из кожи, его носили на ногах, он был древним у арабов.</item>
+        <item>Маленькое белое оружие, которое надевается на пояс.</item>
+        <item> Небольшая подушка, на которую можно опереться</item>
+        <item>Название инструмента, который раньше использовался для освещения.</item>
+        <item>Инструмент, используемый для освещения и украшения</item>
+        <item>Красная шляпа была известна в Леванте, Египте и Марокко.</item>
+        <item>Верхняя крышка</item>
+        <item>Арабское платье широко используется в странах Персидского залива.</item>
+    </string-array>
+</resources>
