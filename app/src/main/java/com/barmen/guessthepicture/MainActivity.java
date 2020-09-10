@@ -1,42 +1,34 @@
 package com.barmej.guessthepicture;
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Random;
+
+import static com.barmej.guessthepicture.R.drawable.icon_1;
 
 
 public class MainActivity extends AppCompatActivity {
-    private static final String[] ANSWER_DESCRIPTION = {
-            "يوضع فوق الحطّة\\الغترة لتثبيتها",
-            "مبطنة بالصوف، تلبس في الشتاء للوقاية من البرد",
-            "أحد أنواع النسيج البدوي التقليدي",
-            "تستخدم في صبغ الشعر واللحية، كما تستخدم أيضاً في تجميل الأيدي بالنسبة للنساء",
-            "الوعاء المستخدم في تقديم القهوة عند العرب",
-            "مصنوع من الجلد، يُلبس في القدم، اشتُهر قديماً عند العرب",
-            "سلاح أبيض صغير يوضع على الخصر",
-            "وسادة صغيرة يُتكأ عليها",
-            "اسم الاداة التي كانت تُستخدم للإضاءة قديما",
-            "أداة تُستخدم للإضاءة والزينة",
-            "قبعة حمراء اشتهرت في بلاد الشام ومصر والمغرب",
-            "غطاء يُكوّر فوق الرأس",
-            "ثوب عربي يُلبس بكثرة في دول الخليج"
-    };
+    private String[] ANSWER_DESCRIPTION;
     int[] mViewPictures = {
-            R.drawable.icon_1,
+            icon_1,
             R.drawable.icon_2,
             R.drawable.icon_3,
             R.drawable.icon_4,
@@ -50,11 +42,10 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.icon_12,
             R.drawable.icon_13
     };
-    ;
+
     int mCurrentIndex = 0;
     ImageView QuestionImageView;
     private String mCurrentAnswerDescription;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,24 +57,15 @@ public class MainActivity extends AppCompatActivity {
         QuestionImageView = findViewById(R.id.image_view_question);
         findViewById(R.id.button_change_question);
         findViewById(R.id.button_open_answer);
+        ANSWER_DESCRIPTION = getResources().getStringArray(R.array.answer_description);
         showNewQuestion();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.menuChaneLang) {
-            showLanguageDialog();
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
+    public void buttonChangeLanguage(View view){
+        showLanguageDialog();
+        findViewById(R.id.button_change_language);
+
     }
 
     private void showLanguageDialog() {
@@ -115,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
     }
     private void saveLanguage(String lang) {
-        SharedPreferences sharedPreferences = getSharedPreferences("app_prev", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("app_pref", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("app_lang",lang);
         editor.apply();
@@ -132,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         mCurrentAnswerDescription = ANSWER_DESCRIPTION[mCurrentIndex];
             Drawable questionDrawable = ContextCompat.getDrawable(this, mViewPictures[mCurrentIndex++]);
             QuestionImageView.setImageDrawable(questionDrawable);
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException ignored) {
         }
     }
     public void buttonOpenAnswer(View view){
@@ -144,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this,shareActivity.class);
         intent.putExtra("text_share_extra",mViewPictures);
         startActivity(intent);
+
     }
 
 }
