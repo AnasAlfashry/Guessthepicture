@@ -1,4 +1,4 @@
-package com.barmej.guessthepicture;
+package com.barmen.guessthepicture;
 
 public class Constants {
     public static final String APP_PREF = "app_pref";

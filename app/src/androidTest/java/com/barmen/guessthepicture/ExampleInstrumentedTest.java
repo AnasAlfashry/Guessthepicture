@@ -1,4 +1,4 @@
-package com.barmej.guessthepicture;
+package com.barmen.guessthepicture;
 
 import android.content.Context;
 

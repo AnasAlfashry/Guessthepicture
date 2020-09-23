@@ -1,35 +1,25 @@
-package com.barmej.guessthepicture;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
+package com.barmen.guessthepicture;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Random;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
-import static com.barmej.guessthepicture.R.drawable.icon_1;
+import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
     private String[] ANSWER_DESCRIPTION;
     int[] mViewPictures = {
-            icon_1,
             R.drawable.icon_2,
+            R.drawable.icon_1,
             R.drawable.icon_3,
             R.drawable.icon_4,
             R.drawable.icon_5,
@@ -68,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void showLanguageDialog() {
         AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.Change_lang_text)
@@ -96,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 }).create();
         alertDialog.show();
     }
+
     private void saveLanguage(String lang) {
         SharedPreferences sharedPreferences = getSharedPreferences("app_pref", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -111,8 +103,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onChangeImageClicked(View view) {
         try {
+            mCurrentIndex ++;
         mCurrentAnswerDescription = ANSWER_DESCRIPTION[mCurrentIndex];
-            Drawable questionDrawable = ContextCompat.getDrawable(this, mViewPictures[mCurrentIndex++]);
+            Drawable questionDrawable = ContextCompat.getDrawable(this, mViewPictures[mCurrentIndex]);
             QuestionImageView.setImageDrawable(questionDrawable);
         } catch (ArrayIndexOutOfBoundsException ignored) {
         }
@@ -124,9 +117,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void buttonShareQuestionClicked(View view){
         Intent intent = new Intent(MainActivity.this,shareActivity.class);
-        intent.putExtra("text_share_extra",mViewPictures);
+        intent.putExtra("image_id",mViewPictures[mCurrentIndex]);
         startActivity(intent);
-
     }
 
 }

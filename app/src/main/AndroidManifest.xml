@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.barmej.guessthepicture">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.barmen.guessthepicture">
 
     <application
         android:allowBackup="true"
@@ -9,9 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".answerActivity"></activity>
-        <activity android:name=".shareActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.barmen.guessthepicture.answerActivity"></activity>
+        <activity android:name="com.barmen.guessthepicture.shareActivity" />
+        <activity android:name="com.barmen.guessthepicture.MainActivity"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -20,9 +22,11 @@
         <provider
             android:grantUriPermissions="true"
             android:exported="false"
-            android:authorities="com.barmej.guessthepicture.fileprovider"
-            android:name="androidx.core.content.FileProvider"/>
+            android:authorities="com.barmen.guesstimate.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            tools:ignore="MissingClass">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+        </provider>
     </application>
 
 </manifest>
